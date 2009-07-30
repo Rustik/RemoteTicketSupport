@@ -1,0 +1,55 @@
+
+
+// callback
+function loadit(data) {
+  // работаем с данными
+  if (!data) {
+    return;
+  }
+
+  var oTotal = document.getElementById("<%= params[:id_of_html_block] %>");
+  oTotal.innerHTML = data;//.ResultSet.totalResultsAvailable;
+  
+}
+
+// здесь будет ссылка на новый элемент script
+var oElem = null;
+
+function sendJSONP(url, callback) {
+
+  if (!url || !callback)
+    return;
+
+  url += '&callback='+callback;
+
+  // выполняем запрос JSONP
+  if (oElem) {
+    oElem.parentNode.removeChild(oElem);
+  }
+
+  oElem = document.createElement('script');
+  oElem.setAttribute('type','text/javascript');
+  document.getElementsByTagName('head')[0].appendChild(oElem);
+  oElem.setAttribute('src', url);
+}
+
+function loadForm(){
+	
+  <% update_page do |page| %>
+    <%= page.replace_html params[:id_of_html_block], :partial => 'form', :object => @issue, :locals => {:issue => @issue, :project => @project, :allowed_statuses => @allowed_statuses, :priorities => @priorities} %>
+  <% end %>	
+  return false;
+	
+}
+
+window.onload = function(){
+  
+  document.getElementById("reportBtn").onclick = function(){
+  	if (document.getElementById("<%= params[:id_of_html_block] %>").style.display == 'none')
+  		document.getElementById("<%= params[:id_of_html_block] %>").style.display = 'block';   
+  	loadForm();
+  }	
+  
+  loadForm();
+  
+}

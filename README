@@ -1,0 +1,10 @@
+RemoteTicketSupport
+===================
+
+Simple plugin that shows how to create tickets from remote domains using jsonp. Dependent on engines plugin. See 'sample/report.html' for client html code. 
+
+Simple drop this plugin into your redmine vendor/plugins dir, and copy content of sample/report.html to your client site. Please note to modify host domain, in my case its 192.168.1.34. The html is required prototype and calendar.js to run, its not really that hard to clear this dependencies.
+
+Rails 2.0 and 2.3: There are bug with ActiveSupport, have to patch it https://rails.lighthouseapp.com/projects/8994/tickets/1956-json-validations-errors-for-activeresource
+
+Copyright (c) 2009 RustamG, released under the MIT license

@@ -1,0 +1,1 @@
+connect '/projects/:project_id/create_issue_remotely', :controller => 'remote_issues', :action => "create_remotely"
